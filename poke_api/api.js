@@ -71,3 +71,5 @@ async function getPokemonAbility(pokemonId, abilityName) {
     }
     return {};
 }
+
+export {getAllPokemons, getPokemonById, getPokemonsAbility, getPokemonType, getPokemonAbility};
