@@ -10,8 +10,6 @@
       rel="stylesheet"
     />
     <title>Pokédex</title>
-    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="./node_modules/bootstrap-icons/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
@@ -86,7 +84,7 @@
                 </button>
                 <div class="input-search-container flex-grow-1">
                   <input
-                    class="form-control"
+                    class="form-control"catalog-grid
                     type="text"
                     name="pokemon-search"
                     id="pokemon-search"
@@ -148,32 +146,7 @@
                       <i class="bi bi-circle-fill scan-indicator" aria-hidden="true"></i>
                     </div>
                   </div>
-                  <div class="container current-pokemon-pattern">
-                    <div id="header-current-pokemon" class="row">
-                      <div class="col text-start">
-                        ID: #025 <i class="bi bi-circle-fill" aria-hidden="true"></i> PIKACHU
-                      </div>
-                      <div class="col text-end">
-                        MODE: OPTIC-CAPTURE <i class="bi bi-broadcast"></i>
-                      </div>
-                    </div>
-                    <img
-                      src="./img/pikachu.png"
-                      alt="Pikachu"
-                      class="img-fluid mx-auto d-block"
-                    />
-                    <div id="footer-current-pokemon" class="row">
-                      <div class="col text-start">
-                        <i class="bi bi-soundwave"></i>
-                        CRY SYNTH:
-                      </div>
-                      <div class="col text-end">
-                        <i class="bi bi-bar-chart-fill"></i>
-                        <i class="bi bi-bar-chart-fill"></i>
-                        <i class="bi bi-reception-1"></i>
-                      </div>
-                    </div>
-                  </div>
+                  <div class="container current-pokemon-pattern"></div>
                   <div class="row align-items-center">
                     <div class="col">
                       <i class="bi bi-circle-fill speaker-dot" aria-hidden="true"></i>
@@ -187,12 +160,10 @@
                   <div class="col text-center">
                     <button id="previous-pokemon" type="button" class="btn rounded">
                       <i class="bi bi-arrow-left"></i>
-                      #024 ARBOK
                     </button>
                   </div>
                   <div class="col text-center">
                     <button id="next-pokemon" type="button" class="btn rounded">
-                      #026 RAICHU
                       <i class="bi bi-arrow-right"></i>
                     </button>
                   </div>
@@ -253,22 +224,22 @@
                   <div class="pokemon-stats" aria-label="Estadísticas de Pikachu">
                     <div class="stat-row">
                       <span>PS (HP)</span>
-                      <progress class="stat-bar" max="100" value="35" aria-label="Puntos de salud: 35 de 100">35</progress>
+                      <progress class="stat-bar" min="0" max="100" value="35" aria-label="Puntos de salud: 35 de 100">35</progress>
                       <span>35</span>
                     </div>
                     <div class="stat-row">
                       <span>ATAQUE</span>
-                      <progress class="stat-bar" max="100" value="55" aria-label="Ataque: 55 de 100">55</progress>
+                      <progress class="stat-bar" min="0" max="100" value="55" aria-label="Ataque: 55 de 100">55</progress>
                       <span>55</span>
                     </div>
                     <div class="stat-row">
                       <span>DEFENSA</span>
-                      <progress class="stat-bar" max="100" value="40" aria-label="Defensa: 40 de 100">40</progress>
+                      <progress class="stat-bar" min="0" max="100" value="40" aria-label="Defensa: 40 de 100">40</progress>
                       <span>40</span>
                     </div>
                     <div class="stat-row">
                       <span>VELOCIDAD</span>
-                      <progress class="stat-bar" max="100" value="90" aria-label="Velocidad: 90 de 100">90</progress>
+                      <progress class="stat-bar" min="0" max="100" value="90" aria-label="Velocidad: 90 de 100">90</progress>
                       <span>90</span>
                     </div>
                   </div>
@@ -304,110 +275,19 @@
                       151 ESPECÍMENES
                     </div>
                   </div>
-                  <div class="row row-cols-1 row-cols-sm-2 catalog-grid">
-                  <div class="col pokemon-list">
-                    <img
-                      src="./img/pikachu.png"
-                      alt="pokemon"
-                      class="img-fluid"
-                    />
-                    <span>#025</span> PIKACHU
-                    <span>ELEC</span>
-                  </div>
-                  <div class="col pokemon-list">
-                    <img
-                      src="./img/pikachu.png"
-                      alt="pokemon"
-                      class="img-fluid"
-                    />
-                    <span>#025</span> PIKACHU
-                    <span>ELEC</span>
-                  </div>
-                  <div class="col pokemon-list">
-                    <img
-                      src="./img/pikachu.png"
-                      alt="pokemon"
-                      class="img-fluid"
-                    />
-                    <span>#025</span> PIKACHU
-                    <span>ELEC</span>
-                  </div>
-                  <div class="col pokemon-list">
-                    <img
-                      src="./img/pikachu.png"
-                      alt="pokemon"
-                      class="img-fluid"
-                    />
-                    <span>#025</span> PIKACHU
-                    <span>ELEC</span>
-                  </div>
-                  <div class="col pokemon-list">
-                    <img
-                      src="./img/pikachu.png"
-                      alt="pokemon"
-                      class="img-fluid"
-                    />
-                    <span>#025</span> PIKACHU
-                    <span>ELEC</span>
-                  </div>
-                  <div class="col pokemon-list">
-                    <img
-                      src="./img/pikachu.png"
-                      alt="pokemon"
-                      class="img-fluid"
-                    />
-                    <span>#025</span> PIKACHU
-                    <span>ELEC</span>
-                  </div>
-                  <div class="col pokemon-list">
-                    <img
-                      src="./img/pikachu.png"
-                      alt="pokemon"
-                      class="img-fluid"
-                    />
-                    <span>#025</span> PIKACHU
-                    <span>ELEC</span>
-                  </div>
-                  <div class="col pokemon-list">
-                    <img
-                      src="./img/pikachu.png"
-                      alt="pokemon"
-                      class="img-fluid"
-                    />
-                    <span>#025</span> PIKACHU
-                    <span>ELEC</span>
-                  </div>
-                  <div class="col pokemon-list">
-                    <img
-                      src="./img/pikachu.png"
-                      alt="pokemon"
-                      class="img-fluid"
-                    />
-                    <span>#025</span> PIKACHU
-                    <span>ELEC</span>
-                  </div>
-                  <div class="col pokemon-list">
-                    <img
-                      src="./img/pikachu.png"
-                      alt="pokemon"
-                      class="img-fluid"
-                    />
-                    <span>#025</span> PIKACHU
-                    <span>ELEC</span>
-                  </div>
+                  <div class="row row-cols-1 row-cols-sm-2 catalog-grid spinner-border"></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      </div>
     </main>
     <footer class="app-footer d-flex align-items-center justify-content-between">
       <span><i class="bi bi-circle-fill" aria-hidden="true"></i> DEX VOICE: ACTIVE</span>
       <span class="d-none d-md-inline">REGISTERED: 151 / 151 KANTO INDEX</span>
       <span class="d-none d-sm-inline">SILPH CO. &amp; PROF. OAK LABS <b>SYS VER 1.0.4-JP</b></span>
+      <script type="module" src="./script.js"></script>
     </footer>
-    <script type="module" src="./script.js"></script>
   </body>
 </html>

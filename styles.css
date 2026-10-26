@@ -1,3 +1,6 @@
+@import url('./node_modules/bootstrap/dist/css/bootstrap.min.css');
+@import url('./node_modules/bootstrap-icons/font/bootstrap-icons.min.css');
+
 :root {
   color-scheme: dark;
   --pokedex-red: #dc0a2d;
@@ -718,6 +721,11 @@ input {
   border-radius: 3px;
   font-size: 0.57rem;
   white-space: nowrap;
+  cursor: pointer;
+}
+
+.pokemon-list:hover {
+  background-color: #454040;
 }
 
 .pokemon-list img {
