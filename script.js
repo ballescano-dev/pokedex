@@ -110,4 +110,10 @@ async function fillPokemonDisplay(pokemon_display, pokemon_name) {
       #${next_pokemon.id.toString().padStart(3, '0')} ${next_pokemon.name.toUpperCase()}
       <i class="bi bi-arrow-right"></i>
     `;
+
+    const pokemon_title = document.getElementsByClassName('pokemon-title')[0];
+    pokemon_title.innerHTML = `
+      <div class="col-7"><span>#${current_pokemon.id.toString().padStart(3, '0')}</span> ${current_pokemon.name.toUpperCase()}</div>
+      <div class="col-5 text-end"><span class="type-badge">ELEC</span></div>
+    `;
 }
