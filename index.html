@@ -3,34 +3,39 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pokeapi</title>
-    <link rel="stylesheet" href="./styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
       rel="stylesheet"
     />
+    <title>Pokédex</title>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./node_modules/bootstrap-icons/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <header>
-      <div class="container-fluid primary-bg">
-        <div class="row">
+      <div class="container-fluid primary-bg app-header">
+        <div class="row align-items-center">
           <div
-            class="col-12 col-md-2 logo-container d-flex align-items-center justify-content-center"
+            class="col-8 col-lg-3 logo-container d-flex align-items-center"
           >
             <img
               src="./img/logo.png"
-              alt="Logo pokedex"
-              class="img-fluid h-50"
+              alt=""
+              class="img-fluid"
             />
-            <span class="my-auto">POKEDEX</span>
+            <div class="brand-copy">
+              <span>POKÉDEX</span>
+              <small>MODEL HANDY909</small>
+            </div>
           </div>
           <div
-            class="col-12 col-md-8 navbar-container d-flex align-items-center justify-content-end"
+            class="col-lg-6 navbar-container"
           >
             <nav class="navbar navbar-expand-lg">
-              <div class="container-fluid">
+              <div class="container-fluid justify-content-end">
                 <button
                   class="navbar-toggler"
                   type="button"
@@ -40,117 +45,113 @@
                   aria-expanded="false"
                   aria-label="Toggle navigation"
                 >
-                  <span class="navbar-toggler-icon"></span>
+                  <i class="bi bi-list text-white fs-3" aria-hidden="true"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                  <ul class="navbar-nav">
+                  <ul class="navbar-nav justify-content-center w-100">
                     <li class="nav-item">
-                      <a class="nav-link active" aria-current="page" href="#"
-                        >Home</a
-                      >
+                      <a class="nav-link" href="#main-container">KANTO DEX</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#">Features</a>
+                      <a class="nav-link" href="#catalog">TYPE MATCHUPS</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#">Pricing</a>
+                      <a class="nav-link" href="#catalog">CRIES ARCHIVE</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link disabled" aria-disabled="true"
-                        >Disabled</a
-                      >
+                      <a class="nav-link" href="#dexter-voice">DIAGNOSTICS</a>
                     </li>
                   </ul>
                 </div>
               </div>
             </nav>
           </div>
-          <div class="col-12 col-md-2"></div>
+          <div class="col-lg-3 header-status d-none d-lg-flex justify-content-end gap-2">
+            <span class="status-chip"><i class="bi bi-search"></i> ID / NAME #001-151</span>
+            <span class="status-chip status-ready"><i class="bi bi-soundwave"></i> VOX READY</span>
+            <button class="btn user-button" type="button" aria-label="Perfil de usuario">
+              <i class="bi bi-person-fill" aria-hidden="true"></i>
+            </button>
+          </div>
         </div>
       </div>
     </header>
     <main>
-      <div class="container-fluid main-bg">
-        <div class="row" id="banner-nav">
-          <div class="col-12 col-sm-6" id="form-search">
-            <form method="post" action="#" class="row">
-              <div class="input-group form-search-input-container">
-                <button type="submit" value="" class="input-group-text">
-                  <i class="bi bi-search"></i>
+      <div class="container-fluid main-bg app-main">
+        <div class="row align-items-center g-3" id="banner-nav">
+          <div class="col-12 col-lg-5" id="form-search">
+            <form method="get" action="#" class="input-group form-search-input-container">
+                <button type="submit" class="btn search-button" aria-label="Buscar Pokémon">
+                  <i class="bi bi-search" aria-hidden="true"></i>
                 </button>
-                <div class="input-search-container form-floating">
+                <div class="input-search-container flex-grow-1">
                   <input
                     class="form-control"
                     type="text"
                     name="pokemon-search"
                     id="pokemon-search"
-                    placeholder="Buscar pokémon"
+                    placeholder="Buscar Pokémon (N.º o nombre)..."
+                    aria-label="Buscar Pokémon por número o nombre"
                   />
-                  <label for="pokemon-search"
-                    >Buscar pokémon (N.º o nombre)...</label
-                  >
                 </div>
-                <input type="reset" value="RESET" />
-              </div>
+                <button type="reset" class="btn reset-button">RESET</button>
             </form>
           </div>
-          <div class="col-12 col-sm-4" id="filters">
-            <div class="row">
-              <div class="d-flex flex-wrap gap-2 mb-2">
-                <button class="btn rounded filter">TODOS</button>
-                <button class="btn rounded filter">PLANTA</button>
-                <button class="btn rounded filter">FUEGO</button>
-                <button class="btn rounded filter">AGUA</button>
-                <button class="btn rounded filter">ELÉC</button>
-                <button class="btn rounded filter">PSI</button>
-              </div>
+          <div class="col-12 col-lg-5" id="filters">
+            <div class="filter-controls d-flex flex-wrap align-items-center gap-1">
+              <span class="filter-label">FILTRO:</span>
+              <button type="button" class="btn filter active">TODOS</button>
+              <button type="button" class="btn filter filter-grass">PLANTA</button>
+              <button type="button" class="btn filter filter-fire">FUEGO</button>
+              <button type="button" class="btn filter filter-water">AGUA</button>
+              <button type="button" class="btn filter filter-electric">ELÉC</button>
+              <button type="button" class="btn filter filter-psychic">PSI</button>
             </div>
           </div>
           <div
-            class="col-12 col-sm-2 d-flex align-items-center justify-content-center"
+            class="col-12 col-lg-2 d-flex align-items-center justify-content-lg-end"
             id="dexter-voice"
           >
-            <button class="btn rounded filter">
-              <i class="bi bi-circle-fill" style="color: #78d082"></i>
+            <button class="btn voice-button" type="button">
+              <i class="bi bi-circle-fill voice-indicator" aria-hidden="true"></i>
               VOZ DE DEXTER
-              <i class="bi bi-volume-up-fill"></i>
+              <i class="bi bi-volume-up-fill" aria-hidden="true"></i>
             </button>
           </div>
         </div>
         <div class="container-fluid" id="main-container">
-          <div class="row">
+          <div class="row align-items-center device-heading">
             <div class="col-6">
-              <img
-                src="./img/logo.png"
-                alt="Logo pokedex"
-                class="img-fluid h-50"
-              />
+              <div class="device-emblem" aria-hidden="true">
+                <span class="device-lens"></span>
+                <span class="device-lights">
+                  <i></i><i></i><i></i>
+                </span>
+              </div>
             </div>
             <div class="col-6 text-end">
-              <p>
-                <span> KANTO OS HANDY909 </span>
-              </p>
-              <p>REPLICATOR UNIT // DUAL-BUS ARCH</p>
+              <p class="mb-1">KANTO OS HANDY909</p>
+              <p class="mb-0">REPLICATOR UNIT // DUAL-BUS ARCH</p>
             </div>
           </div>
-          <div class="row m-2 justify-content-between">
-            <div class="col-12 col-lg-6 shadow">
+          <div class="row g-3 device-panels">
+            <div class="col-12 col-lg-6">
               <div id="main-content-left" class="p-3">
                 <div class="container">
-                  <div class="row">
+                  <div class="row screen-bezel-header">
                     <div class="col">
-                      <i class="bi bi-circle-fill" style="color: #d81830"></i>
-                      <i class="bi bi-circle-fill" style="color: #d81830"></i>
+                      <i class="bi bi-circle-fill" aria-hidden="true"></i>
+                      <i class="bi bi-circle-fill" aria-hidden="true"></i>
                     </div>
                     <div class="col text-end">
                       SCAN-CAM: MATRIX
-                      <i class="bi bi-circle-fill" style="color: #78d082"></i>
+                      <i class="bi bi-circle-fill scan-indicator" aria-hidden="true"></i>
                     </div>
                   </div>
-                  <div class="container current-pokemon-pattern m-2">
+                  <div class="container current-pokemon-pattern">
                     <div id="header-current-pokemon" class="row">
                       <div class="col text-start">
-                        ID: #025 <i class="bi bi-circle-fill"></i> PIKACHU
+                        ID: #025 <i class="bi bi-circle-fill" aria-hidden="true"></i> PIKACHU
                       </div>
                       <div class="col text-end">
                         MODE: OPTIC-CAPTURE <i class="bi bi-broadcast"></i>
@@ -158,7 +159,7 @@
                     </div>
                     <img
                       src="./img/pikachu.png"
-                      alt="Current pokemon image"
+                      alt="Pikachu"
                       class="img-fluid mx-auto d-block"
                     />
                     <div id="footer-current-pokemon" class="row">
@@ -175,22 +176,22 @@
                   </div>
                   <div class="row align-items-center">
                     <div class="col">
-                      <i class="bi bi-circle-fill" style="color: #555555"></i>
+                      <i class="bi bi-circle-fill speaker-dot" aria-hidden="true"></i>
                     </div>
-                    <div class="col text-end">
-                      <i class="bi bi-justify fs-1 text-secondary"></i>
+                    <div class="col text-end speaker-grille" aria-hidden="true">
+                      <i></i><i></i><i></i><i></i>
                     </div>
                   </div>
                 </div>
                 <div id="prev-next-pokemon" class="row mt-5">
                   <div class="col text-center">
-                    <button id="previous-pokemon" class="btn rounded">
+                    <button id="previous-pokemon" type="button" class="btn rounded">
                       <i class="bi bi-arrow-left"></i>
                       #024 ARBOK
                     </button>
                   </div>
                   <div class="col text-center">
-                    <button id="next-pokemon" class="btn rounded">
+                    <button id="next-pokemon" type="button" class="btn rounded">
                       #026 RAICHU
                       <i class="bi bi-arrow-right"></i>
                     </button>
@@ -199,6 +200,7 @@
                 <div class="row align-items-center">
                   <div class="col text-center">
                     <button
+                      type="button"
                       class="btn rounded-pill bg-primary px-3 py-1 shadow"
                     >
                       INFO CRYO
@@ -210,14 +212,21 @@
                   </div>
                   <div class="col text-center"></div>
                 </div>
+                <div class="direction-pad" aria-hidden="true">
+                  <span class="direction-up">▲</span>
+                  <span class="direction-left">◀</span>
+                  <span class="direction-center"></span>
+                  <span class="direction-right">▶</span>
+                  <span class="direction-down">▼</span>
+                </div>
               </div>
             </div>
-            <div class="col-12 col-lg-6 shadow">
+            <div class="col-12 col-lg-6">
               <div id="main-content-right" class="p-3">
                 <div class="container main-bg">
-                  <div class="row justify-content-between">
-                    <div class="col-6"><span>#025</span> PIKACHU</div>
-                    <div class="col-6 text-end">ELEC</div>
+                  <div class="row justify-content-between pokemon-title">
+                    <div class="col-7"><span>#025</span> PIKACHU</div>
+                    <div class="col-5 text-end"><span class="type-badge">ELEC</span></div>
                   </div>
                   <div class="row row-cols-3 pokemon-info">
                     <div class="col">ESPECIE</div>
@@ -227,55 +236,75 @@
                     <div class="col">0.4 m</div>
                     <div class="col">6.0 kg</div>
                   </div>
-                  <div class="row pokemon-info">
-                    <p style="color: #7ddb88">
+                  <div class="row pokemon-info pokedex-entry">
+                    <p class="entry-heading">
                       <i class="bi bi-database"></i> REGISTRO OFICIAL KANTO:
                     </p>
                     <p>
                       <q>
                         <em>
-                          Cuando varios de esstos POKÉMON se juntan, su
+                          Cuando varios de estos POKÉMON se juntan, su
                           electricidad puede acumularse y causar tormentas
                           eléctricas con relámpagos.
                         </em>
                       </q>
                     </p>
                   </div>
-                </div>
-                <div class="row"></div>
-              </div>
-              <hr />
-              <div class="container">
-                <div class="row">
-                  <div class="col">MATRIZ DE ACCESO DIRECTO NUMÉRICO</div>
-                  <div class="col text-end">
-                    <span class="rounded-letter shadow">C</span>
-                    <span class="rounded-letter shadow">E</span>
+                  <div class="pokemon-stats" aria-label="Estadísticas de Pikachu">
+                    <div class="stat-row">
+                      <span>PS (HP)</span>
+                      <progress class="stat-bar" max="100" value="35" aria-label="Puntos de salud: 35 de 100">35</progress>
+                      <span>35</span>
+                    </div>
+                    <div class="stat-row">
+                      <span>ATAQUE</span>
+                      <progress class="stat-bar" max="100" value="55" aria-label="Ataque: 55 de 100">55</progress>
+                      <span>55</span>
+                    </div>
+                    <div class="stat-row">
+                      <span>DEFENSA</span>
+                      <progress class="stat-bar" max="100" value="40" aria-label="Defensa: 40 de 100">40</progress>
+                      <span>40</span>
+                    </div>
+                    <div class="stat-row">
+                      <span>VELOCIDAD</span>
+                      <progress class="stat-bar" max="100" value="90" aria-label="Velocidad: 90 de 100">90</progress>
+                      <span>90</span>
+                    </div>
                   </div>
                 </div>
-                <div class="row row-cols-6">
-                  <div class="col btn rounded shadow m-2 btn-matriz">1</div>
-                  <div class="col btn rounded shadow m-2 btn-matriz">2</div>
-                  <div class="col btn rounded shadow m-2 btn-matriz">3</div>
-                  <div class="col btn rounded shadow m-2 btn-matriz">4</div>
-                  <div class="col btn rounded shadow m-2 btn-matriz">5</div>
-                  <div class="col btn rounded shadow m-2 btn-matriz">6</div>
-                  <div class="col btn rounded shadow m-2 btn-matriz">7</div>
-                  <div class="col btn rounded shadow m-2 btn-matriz">8</div>
-                  <div class="col btn rounded shadow m-2 btn-matriz">9</div>
-                  <div class="col btn rounded shadow m-2 btn-matriz">0</div>
-                </div>
-              </div>
-              <div id="catalog" class="container main-bg">
-                <div class="row">
-                  <div class="col" style="color: #74cb7e">
-                    CATÁLOGO REGIONAL (#001 - #151)
+                <hr />
+                <div class="container">
+                  <div class="row">
+                    <div class="col">MATRIZ DE ACCESO DIRECTO NUMÉRICO</div>
+                    <div class="col text-end">
+                      <span class="rounded-letter shadow">C</span>
+                      <span class="rounded-letter shadow">E</span>
+                    </div>
                   </div>
-                  <div class="col text-end" style="color: #d8b0ae">
-                    151 ESPECÍMENES
+                  <div class="row row-cols-5 keypad">
+                    <div class="col"><button type="button" class="btn btn-matriz">1</button></div>
+                    <div class="col"><button type="button" class="btn btn-matriz">2</button></div>
+                    <div class="col"><button type="button" class="btn btn-matriz">3</button></div>
+                    <div class="col"><button type="button" class="btn btn-matriz">4</button></div>
+                    <div class="col"><button type="button" class="btn btn-matriz">5</button></div>
+                    <div class="col"><button type="button" class="btn btn-matriz">6</button></div>
+                    <div class="col"><button type="button" class="btn btn-matriz">7</button></div>
+                    <div class="col"><button type="button" class="btn btn-matriz">8</button></div>
+                    <div class="col"><button type="button" class="btn btn-matriz">9</button></div>
+                    <div class="col"><button type="button" class="btn btn-matriz">0</button></div>
                   </div>
                 </div>
-                <div class="row row-cols-2 justify-content-between">
+                <div id="catalog" class="container main-bg">
+                  <div class="row">
+                    <div class="col catalog-heading">
+                      CATÁLOGO REGIONAL (#001 - #151)
+                    </div>
+                    <div class="col text-end catalog-count">
+                      151 ESPECÍMENES
+                    </div>
+                  </div>
+                  <div class="row row-cols-1 row-cols-sm-2 catalog-grid">
                   <div class="col pokemon-list">
                     <img
                       src="./img/pikachu.png"
@@ -372,9 +401,13 @@
           </div>
         </div>
       </div>
+      </div>
     </main>
-    <footer>
-      <script type="module" src="./script.js"></script>
+    <footer class="app-footer d-flex align-items-center justify-content-between">
+      <span><i class="bi bi-circle-fill" aria-hidden="true"></i> DEX VOICE: ACTIVE</span>
+      <span class="d-none d-md-inline">REGISTERED: 151 / 151 KANTO INDEX</span>
+      <span class="d-none d-sm-inline">SILPH CO. &amp; PROF. OAK LABS <b>SYS VER 1.0.4-JP</b></span>
     </footer>
+    <script type="module" src="./script.js"></script>
   </body>
 </html>
