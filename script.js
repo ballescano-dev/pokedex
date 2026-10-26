@@ -4,25 +4,18 @@ const img_src_base = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/s
 
 window.addEventListener('load', async function() {
   const form = document.getElementsByTagName('form')[0];
-  const pokemonInput = form.elements[1];
-  const btnPreviousPokemon = document.getElementById('previous-pokemon');
-  const btnNextPokemon = document.getElementById('next-pokemon');
-  const all_pokemons = await pokeapi.getAllPokemons();
-  let currentPokemon;
-  
-  fillPokemonGrid(all_pokemons);
-  showCurrentPokemon(btnPreviousPokemon, btnNextPokemon);
-  
-
+  const pokemon_input = form.elements[1];
   form.onsubmit = async function($event) {
     $event.preventDefault();
-    const pokemon = await getPokemonById(pokemonInput.value);
-    console.log(pokemon);
-    // currentPokemon = pokemon;
+    const pokemon = await pokeapi.getPokemonById(pokemon_input.value);
+    pokemon_input.value = '';
+    showCurrentPokemon(pokemon);
   };
 
+  const all_pokemons = await pokeapi.getAllPokemons();
 
-  // btnPreviousPokemon.onclick = nextPokemon(currentPokemon.id);
+  fillPokemonGrid(all_pokemons);
+  showCurrentPokemon();
 });
 
 
@@ -57,50 +50,64 @@ async function fillPokemonGrid(pokemons) {
   }
 }
 
-async function showCurrentPokemon(btnPrev, btnNext) {
+async function showCurrentPokemon(pokemon=null) {
   const pokemon_row = document.getElementsByClassName('catalog-grid')[0].children;
+  const pokemon_display = document.getElementsByClassName('current-pokemon-pattern')[0];
+  
+  let current_pokemon_name;
+  if (pokemon !== null) {
+    current_pokemon_name = pokemon.name;
+    await fillPokemonDisplay(pokemon_display, current_pokemon_name);
+    return;
+  }
+
   for (const div of pokemon_row) {
-    div.onclick = async ($event) => {
-      const pokemon_display = document.getElementsByClassName('current-pokemon-pattern')[0];
+    div.onclick = async () => {
+      if (pokemon === null) current_pokemon_name = div.children[2].innerHTML;
       pokemon_display.innerHTML = '<div class="spinner-border"></div>';
-      const current_pokemon_name = div.children[2].innerHTML;
-      const current_pokemon = await pokeapi.getPokemonById(current_pokemon_name);
-      pokemon_display.innerHTML = `
-        <div id="header-current-pokemon" class="row">
-          <div class="col text-start">
-            ID: #${current_pokemon.id.toString().padStart(3, '0')} <i class="bi bi-circle-fill" aria-hidden="true"></i> ${current_pokemon.name.toUpperCase()}
-          </div>
-          <div class="col text-end">
-            MODE: OPTIC-CAPTURE <i class="bi bi-broadcast"></i>
-          </div>
-        </div>
-        <img
-          src="${img_src_base}${current_pokemon.id}.png"
-          alt="${current_pokemon.name} image"
-          class="img-fluid mx-auto d-block"
-        />
-        <div id="footer-current-pokemon" class="row">
-          <div class="col text-start">
-            <i class="bi bi-soundwave"></i>
-            CRY SYNTH:
-          </div>
-          <div class="col text-end">
-            <i class="bi bi-bar-chart-fill"></i>
-            <i class="bi bi-bar-chart-fill"></i>
-            <i class="bi bi-reception-1"></i>
-          </div>
-        </div>
-      `;
-      const prev_pokemon = await previousPokemon(current_pokemon.id);
-      const next_pokemon = await nextPokemon(current_pokemon.id);
-      btnPrev.innerHTML = `
-        <i class="bi bi-arrow-left"></i>
-        #${prev_pokemon.id.toString().padStart(3, '0')} ${prev_pokemon.name.toUpperCase()}
-      `;
-      btnNext.innerHTML = `
-        #${next_pokemon.id.toString().padStart(3, '0')} ${next_pokemon.name.toUpperCase()}
-        <i class="bi bi-arrow-right"></i>
-      `;
+      await fillPokemonDisplay(pokemon_display, current_pokemon_name);
     }
   }
+}
+
+async function fillPokemonDisplay(pokemon_display, pokemon_name) {
+  const btn_previous_pokemon = document.getElementById('previous-pokemon');
+  const btn_next_pokemon = document.getElementById('next-pokemon');
+  const current_pokemon = await pokeapi.getPokemonById(pokemon_name);
+    pokemon_display.innerHTML = `
+      <div id="header-current-pokemon" class="row">
+        <div class="col text-start">
+          ID: #${current_pokemon.id.toString().padStart(3, '0')} <i class="bi bi-circle-fill" aria-hidden="true"></i> ${current_pokemon.name.toUpperCase()}
+        </div>
+        <div class="col text-end">
+          MODE: OPTIC-CAPTURE <i class="bi bi-broadcast"></i>
+        </div>
+      </div>
+      <img
+        src="${img_src_base}${current_pokemon.id}.png"
+        alt="${current_pokemon.name} image"
+        class="img-fluid mx-auto d-block"
+      />
+      <div id="footer-current-pokemon" class="row">
+        <div class="col text-start">
+          <i class="bi bi-soundwave"></i>
+          CRY SYNTH:
+        </div>
+        <div class="col text-end">
+          <i class="bi bi-bar-chart-fill"></i>
+          <i class="bi bi-bar-chart-fill"></i>
+          <i class="bi bi-reception-1"></i>
+        </div>
+      </div>
+    `;
+    const prev_pokemon = await previousPokemon(current_pokemon.id);
+    const next_pokemon = await nextPokemon(current_pokemon.id);
+    btn_previous_pokemon.innerHTML = `
+      <i class="bi bi-arrow-left"></i>
+      #${prev_pokemon.id.toString().padStart(3, '0')} ${prev_pokemon.name.toUpperCase()}
+    `;
+    btn_next_pokemon.innerHTML = `
+      #${next_pokemon.id.toString().padStart(3, '0')} ${next_pokemon.name.toUpperCase()}
+      <i class="bi bi-arrow-right"></i>
+    `;
 }
