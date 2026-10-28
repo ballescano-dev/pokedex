@@ -38,6 +38,15 @@ async function getPokemonById(pokemonId) {
   return {};
 }
 
+async function getPokemonTypes(pokemonId) {
+  let response = await fetch(`${fullEndpoint.pokemon}${pokemonId}`);
+  if (response.ok) {
+    let data = await response.json();
+    return data.types;
+  }
+  return [];
+}
+
 async function getPokemonsAbility(abilityName) {
   let response = await fetch(`${fullEndpoint.ability}${abilityName}`);
   if (response.ok) {
@@ -72,4 +81,4 @@ async function getPokemonAbility(pokemonId, abilityName) {
   return {};
 }
 
-export { getAllPokemons, getPokemonById, getPokemonsAbility, getPokemonType, getPokemonAbility };
+export { getAllPokemons, getPokemonById, getPokemonsAbility, getPokemonType, getPokemonTypes, getPokemonAbility };

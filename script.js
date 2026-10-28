@@ -20,17 +20,15 @@ window.addEventListener('load', async function() {
 
 
 async function previousPokemon(id) {
-  // TODO: HACER EL ID CON MÓDULO
-  if (id-1 === 0) id = 10327;
-  const previousPokemon = await pokeapi.getPokemonById(id-1);
-  return previousPokemon;
+  const total = 10326;
+  const nextId = (id % total) + 1;
+  return await pokeapi.getPokemonById(nextId);
 }
 
 async function nextPokemon(id) {
-  // TODO: HACER EL ID CON MÓDULO
-  if (id+1 > 10326) id = 0;
-  const nextPokemon = await pokeapi.getPokemonById(id+1);
-  return nextPokemon;
+  const total = 10326;
+  const prevId = ((id - 2 + total) % total) + 1;
+  return await pokeapi.getPokemonById(prevId);
 }
 
 async function fillPokemonGrid(pokemons) {
@@ -112,8 +110,14 @@ async function fillPokemonDisplay(pokemon_display, pokemon_name) {
     `;
 
     const pokemon_title = document.getElementsByClassName('pokemon-title')[0];
+    const pokemon_types = await pokeapi.getPokemonTypes(current_pokemon.id);
+    console.log(pokemon_types);
     pokemon_title.innerHTML = `
       <div class="col-7"><span>#${current_pokemon.id.toString().padStart(3, '0')}</span> ${current_pokemon.name.toUpperCase()}</div>
-      <div class="col-5 text-end"><span class="type-badge">ELEC</span></div>
     `;
+    for (const type of pokemon_types) {
+      pokemon_title.innerHTML += `
+        <div class="col-5 text-end"><span class="type-badge">${type.type.name.toUpperCase().substring(0,4)}</span></div>
+      `;
+    }
 }
